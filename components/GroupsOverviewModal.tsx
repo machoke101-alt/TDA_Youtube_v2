@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { GroupSummaryCards } from './GroupSummaryCards';
 import { MultiSelectDropdown, Option } from './MultiSelectDropdown';
@@ -297,13 +298,13 @@ export const GroupsOverviewModal: React.FC<GroupsOverviewModalProps> = ({
                                                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                                                             </button>
                                                         </div>
-                                                        <span className="text-[9px] text-gray-500 font-mono mt-0.5 opacity-60">ID: {group.id.slice(0,8)}</span>
+                                                        <span className="text-[9px] text-gray-500 font-mono mt-0.5 opacity-60 tabular-nums">ID: {group.id.slice(0,8)}</span>
                                                     </div>
                                                 </td>
                                             )}
                                             {isVisible('createdAt') && (
                                                 <td className="px-4 py-2.5 whitespace-nowrap">
-                                                    <div className="flex flex-col">
+                                                    <div className="flex flex-col tabular-nums">
                                                         <span className="text-[10px] font-bold text-gray-300">{new Date(group.createdAt).toLocaleDateString()}</span>
                                                         <span className="text-[8px] text-gray-500 opacity-60">{new Date(group.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                                     </div>
@@ -311,7 +312,7 @@ export const GroupsOverviewModal: React.FC<GroupsOverviewModalProps> = ({
                                             )}
                                             {isVisible('channelCount') && (
                                                 <td className="px-4 py-2.5 whitespace-nowrap text-center">
-                                                    <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 text-[10px] font-black border border-indigo-500/20">
+                                                    <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 text-[10px] font-black border border-indigo-500/20 tabular-nums">
                                                         {group.channelIds.length}
                                                     </span>
                                                 </td>

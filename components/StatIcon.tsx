@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 interface StatIconProps {
@@ -29,7 +30,7 @@ export const StatIcon: React.FC<StatIconProps> = ({ type, value }) => {
     return (
         <div className="flex items-center text-gray-400" title={`${value} ${type}`}>
             {icons[type]}
-            <span>{value}</span>
+            <span className="tabular-nums">{value}</span>
         </div>
     )
 }

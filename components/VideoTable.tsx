@@ -143,15 +143,15 @@ export const VideoTable: React.FC<VideoTableProps> = ({ videos, sortOrder, sortD
                                                 </div>
                                                 <div className="flex items-center gap-2 mt-1">
                                                     <span className="text-[10px] text-slate-500 font-medium px-1.5 py-0.5 bg-slate-800/40 rounded border border-white/5">SHORTS</span>
-                                                    <span className="text-[10px] text-slate-600 font-mono tracking-tighter opacity-70">ID: {video.id}</span>
+                                                    <span className="text-[10px] text-slate-600 font-mono tracking-tighter opacity-70 tabular-nums">ID: {video.id}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="px-4 py-2.5"> {/* Adjusted padding */}
                                         <div className="flex flex-col items-start">
-                                            <span className="text-[10px] font-bold text-slate-200">{formatRelativeTime(video.publishedAt)}</span>
-                                            <span className="text-[8px] font-medium text-slate-500 mt-0.5">{new Date(video.publishedAt).toLocaleDateString()}</span>
+                                            <span className="text-[10px] font-bold text-slate-200 tabular-nums">{formatRelativeTime(video.publishedAt)}</span>
+                                            <span className="text-[8px] font-medium text-slate-500 mt-0.5 tabular-nums">{new Date(video.publishedAt).toLocaleDateString()}</span>
                                         </div>
                                     </td>
                                     <td className="px-4 py-2.5 align-middle"> {/* Adjusted padding */}

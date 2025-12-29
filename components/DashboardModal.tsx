@@ -1,4 +1,5 @@
 
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { Dashboard } from './Dashboard';
 import { ChannelStats, VideoStat, ChannelGroup, SortOrder } from '../types';
@@ -86,7 +87,7 @@ const ChannelNavItem: React.FC<{
 
             <div className="text-left min-w-0 flex-1">
                 <p className="text-[11px] font-bold truncate leading-none group-hover:text-white transition-colors">{channel.title}</p>
-                <p className="text-[9px] opacity-30 font-mono truncate mt-0.5">{channel.id}</p>
+                <p className="text-[9px] opacity-30 font-mono truncate mt-0.5 tabular-nums">{channel.id}</p>
             </div>
             
             {isRecentlyActive && !isActive && (

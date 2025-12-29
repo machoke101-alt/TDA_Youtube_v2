@@ -67,13 +67,6 @@ export const ChannelsView: React.FC<ChannelsViewProps> = ({
     const [selectedChannelIds, setSelectedChannelIds] = useState<string[]>([]);
     const [channelSortConfig, setChannelSortConfig] = useState<{ key: SortKey; direction: SortDirection }>({ key: 'subscriberCount', direction: 'desc' });
     
-    // States for Groups Overview view (These are now managed internally by GroupsOverviewModal, so they are removed from here)
-    // const [groupSearchQuery, setGroupSearchQuery] = useState('');
-    // const [groupTimeFilter, setGroupTimeFilter] = useState<string[]>([]);
-    // const [visibleGroupColumns, setVisibleGroupColumns] = useState<string[]>(ALL_GROUP_COLUMNS.map(c => c.id));
-    // const [selectedGroupIds, setSelectedGroupIds] = useState<string[]>([]);
-    // const [groupSortConfig, setGroupSortConfig] = useState<{ key: GroupsViewSortKey; direction: GroupsViewSortDirection }>({ key: 'createdAt', direction: 'desc' });
-
     // Shared states for bulk actions (only for channels now)
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [activeBulkMenu, setActiveBulkMenu] = useState<'group' | null>(null);
@@ -81,10 +74,8 @@ export const ChannelsView: React.FC<ChannelsViewProps> = ({
     const [pendingBulkValues, setPendingBulkValues] = useState<string[]>([]);
 
     // Reset selection and bulk action menus when switching sub-views
-    // This effect should still run, now reacting to currentSubView prop changes
     useEffect(() => {
         setSelectedChannelIds([]);
-        // setSelectedGroupIds([]); // Removed
         setActiveBulkMenu(null);
         setPendingBulkValues([]);
     }, [currentSubView]);
@@ -98,14 +89,11 @@ export const ChannelsView: React.FC<ChannelsViewProps> = ({
                 } else if (selectedChannelIds.length > 0) {
                     setSelectedChannelIds([]);
                 } 
-                // else if (selectedGroupIds.length > 0) { // Removed
-                //     setSelectedGroupIds([]);
-                // }
             }
         };
         window.addEventListener('keydown', handleEsc);
         return () => window.removeEventListener('keydown', handleEsc);
-    }, [activeBulkMenu, selectedChannelIds /*, selectedGroupIds*/]);
+    }, [activeBulkMenu, selectedChannelIds]);
 
 
     const groupOptions: Option[] = useMemo(() => channelGroups.map(g => ({ 
@@ -208,12 +196,8 @@ export const ChannelsView: React.FC<ChannelsViewProps> = ({
     );
 
     return (
-        <div className="w-full max-w-[1400px] mx-auto space-y-6 pb-20 relative">
+        <div className="w-full space-y-6 pb-20 relative">
             <div className="bg-gray-800/20 p-4 rounded-2xl border border-gray-700/50 space-y-4 shadow-xl">
-                {/* Removed Sub-navigation tabs from here */}
-
-                {/* Always render channel-specific controls for 'allChannels' view */}
-                {/* currentSubView is always 'allChannels' now in this component */}
                 <div className="space-y-4 animate-fade-in"> 
                     <div className="flex flex-row gap-4 items-center h-11">
                         <div className="relative flex-grow h-full">
@@ -257,7 +241,6 @@ export const ChannelsView: React.FC<ChannelsViewProps> = ({
                 </div>
             </div>
             
-            {/* Always render ChannelTable */}
             <div className="animate-fade-in space-y-6">
                 <SummaryCards channels={filteredAndSortedChannels} />
                 <ChannelTable 
@@ -265,7 +248,7 @@ export const ChannelsView: React.FC<ChannelsViewProps> = ({
                     sortConfig={channelSortConfig} 
                     onSortChange={(k) => setChannelSortConfig(p => ({ key: k, direction: p.key === k && p.direction === 'desc' ? 'asc' : 'desc' }))} 
                     onSelect={onSelectChannel} 
-                    onRemove={onRemoveChannel} // Still allow direct removal from table
+                    onRemove={onRemoveChannel} 
                     visibleColumns={visibleChannelColumns} 
                     selectedIds={selectedChannelIds} 
                     onToggleRow={(id) => setSelectedChannelIds(p => p.includes(id) ? p.filter(i => i !== id) : [...p, id])} 
@@ -274,10 +257,8 @@ export const ChannelsView: React.FC<ChannelsViewProps> = ({
                 />
             </div>
 
-            {/* BULK ACTION BAR for Channels */}
             {selectedChannelIds.length > 0 && (
                 <BulkActionBar count={selectedChannelIds.length} onClear={() => setSelectedChannelIds([])} onDelete={() => setIsDeleteModalOpen(true)}>
-                    {/* Add to Group Dropdown */}
                     <div className="relative">
                         <button onClick={() => { setActiveBulkMenu(activeBulkMenu === 'group' ? null : 'group'); setBulkSearchTerm(''); setPendingBulkValues([]); }} className={`flex items-center gap-2 transition-all hover:scale-105 ${activeBulkMenu === 'group' ? 'text-indigo-400' : 'text-gray-300 hover:text-white'}`}>
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
@@ -297,9 +278,6 @@ export const ChannelsView: React.FC<ChannelsViewProps> = ({
                                                     {pendingBulkValues.includes(g.id) && <span className="text-indigo-400 font-bold ml-2">✓</span>}
                                                 </button>
                                             ))}
-                                            {channelGroups.filter(g => g.name.toLowerCase().includes(bulkSearchTerm.toLowerCase())).length === 0 && (
-                                                <div className="px-4 py-4 text-[10px] text-gray-500 italic text-center">No matching groups</div>
-                                            )}
                                         </>
                                     ) : (
                                         <div className="px-4 py-6 text-center">
@@ -322,15 +300,13 @@ export const ChannelsView: React.FC<ChannelsViewProps> = ({
                 </BulkActionBar>
             )}
 
-            {/* Removed GroupsOverview-related bulk action bar from here */}
-
             <AddChannelModal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} onAddChannel={onAddChannel} isDisabled={!apiKeySet || isAdding} isAdding={isAdding} />
             <DeleteConfirmModal 
                 isOpen={isDeleteModalOpen} 
                 onClose={() => setIsDeleteModalOpen(false)} 
                 onConfirm={handleConfirmDelete} 
                 count={selectedChannelIds.length} 
-                itemName={'channel'} // Always channel for this view
+                itemName={'channel'} 
             />
         </div>
     );

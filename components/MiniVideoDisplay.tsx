@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { VideoStat } from '../types';
 import { formatRelativeTime } from '../utils/helpers';
@@ -21,7 +22,7 @@ export const MiniVideoDisplay: React.FC<{ video: VideoStat | null | undefined, t
                 <p className="text-[12px] leading-tight font-bold text-gray-200 line-clamp-2 group-hover:text-indigo-400 transition-colors" title={video.title}>
                     {video.title}
                 </p>
-                <p className="text-[10px] text-gray-500 mt-0.5 font-mono">{formatRelativeTime(video.publishedAt)}</p>
+                <p className="text-[10px] text-gray-500 mt-0.5 font-mono tabular-nums">{formatRelativeTime(video.publishedAt)}</p>
             </div>
         </a>
     );

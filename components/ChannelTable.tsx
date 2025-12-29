@@ -4,8 +4,8 @@ import React from 'react';
 import type { ChannelStats } from '../types';
 import { formatNumber, formatRelativeTime } from '../utils/helpers';
 import { MiniVideoDisplay } from './MiniVideoDisplay';
-import { CircularCheckbox } from './CircularCheckbox'; // Import from new file
-import { SortableHeader } from './SortableHeader'; // Import from new file
+import { CircularCheckbox } from './CircularCheckbox';
+import { SortableHeader } from './SortableHeader';
 
 interface ChannelTableProps {
     channels: ChannelStats[];
@@ -166,12 +166,7 @@ export const ChannelTable: React.FC<ChannelTableProps> = ({
                                 }}
                             >
                                 <td className="px-4 py-2.5 whitespace-nowrap sticky left-0 z-10 bg-inherit">
-                                    <CircularCheckbox 
-                                        checked={isSelected} 
-                                        onChange={() => onToggleRow(channel.id)} 
-                                        onClick={(e) => e.stopPropagation()} 
-                                        label={`Select ${channel.title}`}
-                                    />
+                                    <CircularCheckbox checked={isSelected} onChange={onToggleRow} onClick={(e) => e.stopPropagation()} label={`Select ${channel.title}`} />
                                 </td>
                                 {isVisible('title') && (
                                     <td className="px-4 py-2.5 whitespace-nowrap">
@@ -182,10 +177,7 @@ export const ChannelTable: React.FC<ChannelTableProps> = ({
                                             >
                                                 <img className={`h-10 w-10 rounded-full border transition-all duration-300 ${isTerminated ? 'border-red-500 grayscale' : 'border-gray-600 group-hover/avatar:border-indigo-500 group-hover/avatar:scale-105'} ${isRecentlyActive ? 'active-pulse ring-2 ring-green-500/50' : ''}`} src={channel.thumbnailUrl} alt="" />
                                                 {isRecentlyActive && (
-                                                    <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-gray-900 shadow-sm z-10"></span>
-                                                )}
-                                                {isTerminated && (
-                                                    <div className="absolute -top-1 -right-1 bg-red-600 text-white text-[9px] px-1 rounded font-bold">DEAD</div>
+                                                    <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#0f172a] shadow-sm z-10"></span>
                                                 )}
                                                 <div className="absolute inset-0 bg-indigo-500/10 opacity-0 group-hover/avatar:opacity-100 rounded-full transition-opacity"></div>
                                             </div>
@@ -198,14 +190,8 @@ export const ChannelTable: React.FC<ChannelTableProps> = ({
                                                     >
                                                         {channel.title}
                                                     </div>
-                                                    {isRecentlyActive && (
-                                                        <div className="flex items-center flex-shrink-0 bg-green-500/10 px-1.5 py-0.5 rounded border border-green-500/20">
-                                                            <span className="w-1 h-1 bg-green-500 rounded-full animate-pulse mr-1"></span>
-                                                            <span className="text-[8px] font-black text-green-500 uppercase tracking-tighter">New</span>
-                                                        </div>
-                                                    )}
                                                 </div>
-                                                <div className="text-[9px] text-gray-500 font-mono truncate mt-0.5 opacity-60" title={`Channel ID: ${channel.id}`}>
+                                                <div className="text-[9px] text-gray-500 font-mono truncate mt-0.5 opacity-60 tabular-nums" title={`Channel ID: ${channel.id}`}>
                                                     {channel.id}
                                                 </div>
                                             </div>
@@ -214,7 +200,7 @@ export const ChannelTable: React.FC<ChannelTableProps> = ({
                                 )}
                                 {isVisible('publishedAt') && (
                                     <td className="px-4 py-2.5 whitespace-nowrap">
-                                        <div className="flex flex-col">
+                                        <div className="flex flex-col tabular-nums">
                                             <span className="text-[10px] font-bold text-gray-300">{new Date(channel.publishedAt).toLocaleDateString()}</span>
                                             <span className="text-[8px] text-gray-500 opacity-60">{new Date(channel.publishedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                         </div>

@@ -28,8 +28,8 @@ const InfoIcon = ({ tooltip }: { tooltip: string }) => (
 const StatCard: React.FC<{ title: string; value: string; delta?: string; tooltip: string, deltaColor?: string }> = ({ title, value, delta, tooltip, deltaColor = 'text-green-400' }) => (
     <div className="bg-gray-900/50 p-4 rounded-lg">
         <h3 className="text-sm text-gray-400 flex items-center">{title} <InfoIcon tooltip={tooltip} /></h3>
-        <p className="text-2xl font-bold text-white">{value}</p>
-        {delta && <p className={`text-sm font-semibold ${deltaColor}`}>{delta}</p>}
+        <p className="text-2xl font-bold text-white tabular-nums">{value}</p>
+        {delta && <p className={`text-sm font-semibold ${deltaColor} tabular-nums`}>{delta}</p>}
     </div>
 );
 
@@ -184,13 +184,13 @@ export const GrowthChart: React.FC<GrowthChartProps> = ({ history }) => {
             <div className="w-full overflow-x-auto">
                  <svg viewBox={`0 0 ${width} ${height}`} className="font-sans">
                     {/* Y Axis Labels */}
-                    <text x={padding - 10} y={padding + 5} textAnchor="end" fill="#9ca3af" fontSize="12">{formatNumber(max)}</text>
-                    <text x={padding - 10} y={height - padding} textAnchor="end" fill="#9ca3af" fontSize="12">{formatNumber(min)}</text>
+                    <text x={padding - 10} y={padding + 5} textAnchor="end" fill="#9ca3af" fontSize="12" className="tabular-nums">{formatNumber(max)}</text>
+                    <text x={padding - 10} y={height - padding} textAnchor="end" fill="#9ca3af" fontSize="12" className="tabular-nums">{formatNumber(min)}</text>
                     <line x1={padding} y1={padding} x2={padding} y2={height - padding} stroke="#4b5563" strokeWidth="1" />
 
                     {/* X Axis Labels */}
-                     <text x={padding} y={height - padding + 20} textAnchor="start" fill="#9ca3af" fontSize="12">{points[0].date}</text>
-                     <text x={width - padding} y={height - padding + 20} textAnchor="end" fill="#9ca3af" fontSize="12">{points[points.length - 1].date}</text>
+                     <text x={padding} y={height - padding + 20} textAnchor="start" fill="#9ca3af" fontSize="12" className="tabular-nums">{points[0].date}</text>
+                     <text x={width - padding} y={height - padding + 20} textAnchor="end" fill="#9ca3af" fontSize="12" className="tabular-nums">{points[points.length - 1].date}</text>
                     <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="#4b5563" strokeWidth="1" />
 
                     {/* Chart Path */}
@@ -205,8 +205,8 @@ export const GrowthChart: React.FC<GrowthChartProps> = ({ history }) => {
                              <circle cx={point.x} cy={point.y} r="4" fill="#4f46e5" className="cursor-pointer" />
                              <g className="opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                                 <rect x={point.x - 50} y={point.y - 45} width="100" height="35" rx="5" fill="#1f2937" stroke="#4f46e5" />
-                                <text x={point.x} y={point.y - 30} textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">{formatNumber(point.value)}</text>
-                                <text x={point.x} y={point.y - 15} textAnchor="middle" fill="#9ca3af" fontSize="10">{point.date}</text>
+                                <text x={point.x} y={point.y - 30} textAnchor="middle" fill="white" fontSize="12" fontWeight="bold" className="tabular-nums">{formatNumber(point.value)}</text>
+                                <text x={point.x} y={point.y - 15} textAnchor="middle" fill="#9ca3af" fontSize="10" className="tabular-nums">{point.date}</text>
                             </g>
                         </g>
                     ))}
@@ -215,8 +215,8 @@ export const GrowthChart: React.FC<GrowthChartProps> = ({ history }) => {
                              <circle cx={point.x} cy={point.y} r="4" fill="#818cf8" className="cursor-pointer" />
                              <g className="opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                                 <rect x={point.x - 50} y={point.y - 45} width="100" height="35" rx="5" fill="#1f2937" stroke="#818cf8" />
-                                <text x={point.x} y={point.y - 30} textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">{formatNumber(point.value)}</text>
-                                <text x={point.x} y={point.y - 15} textAnchor="middle" fill="#9ca3af" fontSize="10">{point.date}</text>
+                                <text x={point.x} y={point.y - 30} textAnchor="middle" fill="white" fontSize="12" fontWeight="bold" className="tabular-nums">{formatNumber(point.value)}</text>
+                                <text x={point.x} y={point.y - 15} textAnchor="middle" fill="#9ca3af" fontSize="10" className="tabular-nums">{point.date}</text>
                             </g>
                         </g>
                     ))}
@@ -263,7 +263,7 @@ export const GrowthChart: React.FC<GrowthChartProps> = ({ history }) => {
                  {/* Time Range */}
                 <div className="flex items-center gap-2">
                     <span className="text-sm text-gray-400">Range:</span>
-                     <select value={timeRange} onChange={handleTimeRangeChange} className="bg-gray-700 border-gray-600 rounded-md text-sm p-2">
+                     <select value={timeRange} onChange={handleTimeRangeChange} className="bg-gray-700 border-gray-600 rounded-md text-sm p-2 tabular-nums">
                         <option value="1h">Last Hour</option>
                         <option value="12h">Last 12 Hours</option>
                         <option value="24h">Last 24 Hours</option>
