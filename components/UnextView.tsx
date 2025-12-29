@@ -1,5 +1,4 @@
 
-
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { SearchableSelect } from './SearchableSelect';
 import { MultiSelectDropdown, Option as MultiOption } from './MultiSelectDropdown';
@@ -392,7 +391,7 @@ export const UnextView: React.FC<UnextViewProps> = ({ movies, channels, onAddMov
                         selectedIds={visibleColumns}
                         onChange={setVisibleColumns}
                         className="w-40 h-full"
-                        icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 00-2 2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 00-2 2" /></svg>}
+                        icon={<svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 00-2 2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 00-2 2" /></svg>}
                     />
 
                     <div className="flex items-center gap-2 h-full">
@@ -434,7 +433,7 @@ export const UnextView: React.FC<UnextViewProps> = ({ movies, channels, onAddMov
             {totalItems > itemsPerPage && (
                 <div className="flex justify-between items-center bg-gray-800/40 p-3 rounded-lg border border-gray-700/50">
                     <div className="text-sm text-gray-400">
-                        Showing <span className="font-medium text-white tabular-nums">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium text-white tabular-nums">{Math.min(currentPage * itemsPerPage, totalItems)}</span> of <span className="font-medium text-white tabular-nums">{totalItems}</span> results
+                        Showing <span className="font-medium text-white">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium text-white">{Math.min(currentPage * itemsPerPage, totalItems)}</span> of <span className="font-medium text-white">{totalItems}</span> results
                     </div>
                     <div className="flex gap-2">
                         <button
@@ -444,7 +443,7 @@ export const UnextView: React.FC<UnextViewProps> = ({ movies, channels, onAddMov
                         >
                             Previous
                         </button>
-                        <span className="px-3 py-1 bg-gray-900 rounded text-sm text-gray-300 border border-gray-700 tabular-nums">
+                        <span className="px-3 py-1 bg-gray-900 rounded text-sm text-gray-300 border border-gray-700">
                             Page {currentPage} of {totalPages}
                         </span>
                         <button
@@ -489,7 +488,7 @@ export const UnextView: React.FC<UnextViewProps> = ({ movies, channels, onAddMov
                                     onSort={handleSort} 
                                     align="center" 
                                     className="w-[160px] min-w-[160px]"
-                                    icon={<svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>}
+                                    icon={<svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>}
                                 />
                             )}
                             {isVisible('addedAt') && (
@@ -499,7 +498,7 @@ export const UnextView: React.FC<UnextViewProps> = ({ movies, channels, onAddMov
                                     currentSort={sortConfig} 
                                     onSort={handleSort} 
                                     className="w-[120px] min-w-[120px]"
-                                    icon={<svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>}
+                                    icon={<svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>}
                                 />
                             )}
                             {isVisible('3d') && (
@@ -576,7 +575,7 @@ export const UnextView: React.FC<UnextViewProps> = ({ movies, channels, onAddMov
                                     )}
                                     {isVisible('addedAt') && (
                                         <td className="px-2 py-1.5 align-middle">
-                                            <div className="flex flex-col tabular-nums">
+                                            <div className="flex flex-col">
                                                 <span className="text-xs text-gray-300">{new Date(movie.addedAt).toLocaleDateString()}</span>
                                                 <span className="text-[10px] text-gray-500 font-mono">{new Date(movie.addedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                             </div>
@@ -641,7 +640,7 @@ export const UnextView: React.FC<UnextViewProps> = ({ movies, channels, onAddMov
             {totalItems > itemsPerPage && (
                 <div className="flex justify-between items-center bg-gray-800/40 p-3 rounded-lg border border-gray-700/50">
                     <div className="text-sm text-gray-400">
-                        Showing <span className="font-medium text-white tabular-nums">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium text-white tabular-nums">{Math.min(currentPage * itemsPerPage, totalItems)}</span> of <span className="font-medium text-white tabular-nums">{totalItems}</span> results
+                        Showing <span className="font-medium text-white">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium text-white">{Math.min(currentPage * itemsPerPage, totalItems)}</span> of <span className="font-medium text-white">{totalItems}</span> results
                     </div>
                     <div className="flex gap-2">
                         <button
@@ -651,7 +650,7 @@ export const UnextView: React.FC<UnextViewProps> = ({ movies, channels, onAddMov
                         >
                             Previous
                         </button>
-                        <span className="px-3 py-1 bg-gray-900 rounded text-sm text-gray-300 border border-gray-700 tabular-nums">
+                        <span className="px-3 py-1 bg-gray-900 rounded text-sm text-gray-300 border border-gray-700">
                             Page {currentPage} of {totalPages}
                         </span>
                         <button
@@ -670,7 +669,7 @@ export const UnextView: React.FC<UnextViewProps> = ({ movies, channels, onAddMov
                 <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 animate-slide-up">
                     <div className="bg-gray-800/95 backdrop-blur-md border border-gray-600 rounded-full shadow-2xl px-6 py-3 flex items-center gap-6">
                         <div className="flex items-center gap-2 border-r border-gray-600 pr-6">
-                            <span className="bg-indigo-500 text-white text-xs font-bold px-2 py-0.5 rounded-full tabular-nums">{selectedIds.length}</span>
+                            <span className="bg-indigo-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">{selectedIds.length}</span>
                             <span className="text-sm font-medium text-white">selected</span>
                         </div>
                         

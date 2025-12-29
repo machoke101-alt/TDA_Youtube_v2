@@ -51,15 +51,6 @@ export interface Movie {
   note?: string;
 }
 
-export interface GeneratedVideo {
-  id: string;
-  url: string;
-  prompt: string;
-  createdAt: string;
-  aspectRatio: "16:9" | "9:16";
-  resolution: "720p" | "1080p";
-}
-
 export interface YouTubeData {
   channelStats: ChannelStats;
   videos: VideoStat[];

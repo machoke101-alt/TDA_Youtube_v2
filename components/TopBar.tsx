@@ -38,7 +38,7 @@ export const TopBar: React.FC<TopBarProps> = ({ trackedChannelsCount, apiKeys, c
             <div className="flex items-center gap-2">
                 <span className="flex items-center gap-1.5">
                      <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" /></svg>
-                    <span>Tracked: <span className="font-bold text-indigo-400 tabular-nums">{trackedChannelsCount}</span></span>
+                    <span>Tracked: <span className="font-bold text-indigo-400">{trackedChannelsCount}</span></span>
                 </span>
             </div>
 
@@ -46,7 +46,7 @@ export const TopBar: React.FC<TopBarProps> = ({ trackedChannelsCount, apiKeys, c
             <div className="flex items-center gap-4">
                 <span className="flex items-center gap-1.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l1-1 1-1 1.257-1.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" /></svg>
-                    <span>Keys: <span className="font-bold text-green-400 tabular-nums">{activeKeys}</span><span className="text-gray-500 tabular-nums">/{totalKeys}</span></span>
+                    <span>Keys: <span className="font-bold text-green-400">{activeKeys}</span><span className="text-gray-500">/{totalKeys}</span></span>
                 </span>
                 
                 <span title={`Current key status: ${statusText}`}>
@@ -60,7 +60,7 @@ export const TopBar: React.FC<TopBarProps> = ({ trackedChannelsCount, apiKeys, c
                         <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                     </svg>
                     <span>Session:</span>
-                    <span className="text-amber-400 font-mono font-semibold tabular-nums">{sessionQuota.toLocaleString()}</span>
+                    <span className="text-amber-400 font-mono font-semibold">{sessionQuota.toLocaleString()}</span>
                 </div>
 
                  <div className="flex items-center gap-1.5" title={`Daily quota usage: ${dailyQuota.toLocaleString()} / ${dailyQuotaLimit.toLocaleString()} units`}>
@@ -71,7 +71,7 @@ export const TopBar: React.FC<TopBarProps> = ({ trackedChannelsCount, apiKeys, c
                     <div className="w-20 bg-gray-700 rounded-full h-2.5 relative border border-gray-600">
                         <div className="bg-indigo-500 h-full" style={{ width: `${Math.min(dailyQuotaPercentage, 100)}%` }}></div>
                     </div>
-                    <span className="text-indigo-400 font-mono font-semibold tabular-nums">{`${dailyQuota.toLocaleString()} / ${dailyQuotaLimit.toLocaleString()}`}</span>
+                    <span className="text-indigo-400 font-mono font-semibold">{`${dailyQuota.toLocaleString()} / ${dailyQuotaLimit.toLocaleString()}`}</span>
                 </div>
             </div>
         </div>

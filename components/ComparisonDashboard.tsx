@@ -1,5 +1,3 @@
-
-
 import React, { useState, useMemo } from 'react';
 import type { ChannelComparisonData, ChannelGroup, VideoStat } from '../types';
 import { formatNumber, formatRelativeTime, exportToCsv } from '../utils/helpers';
@@ -13,7 +11,7 @@ const StatBar: React.FC<{ value: number, max: number, label: string }> = ({ valu
                 className="bg-indigo-600 h-6 rounded-full transition-all duration-500"
                 style={{ width: `${percentage}%` }}
             ></div>
-            <span className="absolute inset-0 flex items-center justify-start pl-3 text-sm font-semibold text-white tabular-nums">
+            <span className="absolute inset-0 flex items-center justify-start pl-3 text-sm font-semibold text-white">
                 {label}
             </span>
         </div>
@@ -39,8 +37,8 @@ const SortableHeader: React.FC<{
     };
 
     return (
-        <th scope="col" className={`px-6 py-3 text-left text-sm font-medium text-gray-300 ${className}`}>
-            <button onClick={handleClick} className="flex items-center gap-1 group">
+        <th scope="col" className={`px-6 py-3 text-center text-sm font-medium text-gray-300 ${className}`}>
+            <button onClick={handleClick} className="flex items-center justify-center gap-1 group w-full">
                 <span>{title}</span>
                 <span className={`transition-opacity ${isSorted ? 'opacity-100' : 'opacity-30 group-hover:opacity-100'}`}>
                     {direction === 'descending' ? '▼' : '▲'}
@@ -198,9 +196,9 @@ export const ComparisonDashboard: React.FC<ComparisonDashboardProps> = ({ group,
                                 </p>
                             </div>
                             <div className="flex-shrink-0 flex items-center gap-2 flex-wrap">
-                                <input type="date" value={localDateRange.start} onChange={e => setLocalDateRange(p => ({ ...p, start: e.target.value }))} className="bg-gray-700 border border-gray-600 rounded-md p-2 text-sm text-white tabular-nums" />
+                                <input type="date" value={localDateRange.start} onChange={e => setLocalDateRange(p => ({ ...p, start: e.target.value }))} className="bg-gray-700 border border-gray-600 rounded-md p-2 text-sm text-white" />
                                 <span className="text-gray-400">to</span>
-                                <input type="date" value={localDateRange.end} onChange={e => setLocalDateRange(p => ({ ...p, end: e.target.value }))} className="bg-gray-700 border border-gray-600 rounded-md p-2 text-sm text-white tabular-nums" />
+                                <input type="date" value={localDateRange.end} onChange={e => setLocalDateRange(p => ({ ...p, end: e.target.value }))} className="bg-gray-700 border border-gray-600 rounded-md p-2 text-sm text-white" />
                                 <button onClick={handleApplyFilter} className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg text-sm">Apply</button>
                                 {dateRange && <button onClick={handleClearFilter} className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg text-sm">Clear</button>}
                                 <button onClick={() => onToggleHighQuotaFeatures(false)} className="bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg text-sm">Disable</button>
@@ -254,7 +252,7 @@ export const ComparisonDashboard: React.FC<ComparisonDashboardProps> = ({ group,
                                         </div>
                                     </div>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300 tabular-nums">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                                     {new Date(channel.publishedAt).toLocaleDateString()}
                                 </td>
                                 <td className="px-6 py-4">

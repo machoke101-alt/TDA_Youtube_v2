@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { GroupSummaryCards } from './GroupSummaryCards';
 import { MultiSelectDropdown, Option } from './MultiSelectDropdown';
@@ -217,7 +216,7 @@ export const GroupsOverviewModal: React.FC<GroupsOverviewModalProps> = ({
                     </div>
 
                     <div className="overflow-x-auto bg-gray-800/40 rounded-xl shadow-xl border border-gray-700/50">
-                        <table className="min-w-full divide-y divide-gray-700/50">
+                        <table className="min-w-full divide-y divide-gray-700/50 table-fixed">
                             <thead className="bg-gray-900/50">
                                 <tr>
                                     <th className="px-4 py-2.5 w-12 text-center sticky left-0 z-10 bg-inherit shadow-[4px_0_10px_rgba(0,0,0,0.2)]">
@@ -279,7 +278,7 @@ export const GroupsOverviewModal: React.FC<GroupsOverviewModalProps> = ({
                                                     <div className="flex flex-col">
                                                         <div className="flex items-center gap-2">
                                                             <span 
-                                                                className="text-[13px] font-bold text-gray-200 group-hover:text-indigo-400 transition-colors cursor-pointer leading-snug"
+                                                                className="text-[13px] font-bold text-gray-200 group-hover:text-indigo-400 transition-colors cursor-pointer leading-snug truncate"
                                                                 onClick={(e) => {
                                                                     e.stopPropagation();
                                                                     onEditGroup(group); // Open GroupSettingsModal to edit
@@ -292,19 +291,19 @@ export const GroupsOverviewModal: React.FC<GroupsOverviewModalProps> = ({
                                                                     e.stopPropagation();
                                                                     onEditGroup(group); // Open GroupSettingsModal to edit
                                                                 }}
-                                                                className="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-white transition-opacity"
+                                                                className="opacity-0 group-hover:opacity-100 text-gray-500 hover:text-white transition-opacity flex-shrink-0"
                                                                 title="Edit Group"
                                                             >
                                                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                                                             </button>
                                                         </div>
-                                                        <span className="text-[9px] text-gray-500 font-mono mt-0.5 opacity-60 tabular-nums">ID: {group.id.slice(0,8)}</span>
+                                                        <span className="text-[9px] text-gray-500 font-mono mt-0.5 opacity-60">ID: {group.id.slice(0,8)}</span>
                                                     </div>
                                                 </td>
                                             )}
                                             {isVisible('createdAt') && (
                                                 <td className="px-4 py-2.5 whitespace-nowrap">
-                                                    <div className="flex flex-col tabular-nums">
+                                                    <div className="flex flex-col text-center">
                                                         <span className="text-[10px] font-bold text-gray-300">{new Date(group.createdAt).toLocaleDateString()}</span>
                                                         <span className="text-[8px] text-gray-500 opacity-60">{new Date(group.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                                     </div>
@@ -312,7 +311,7 @@ export const GroupsOverviewModal: React.FC<GroupsOverviewModalProps> = ({
                                             )}
                                             {isVisible('channelCount') && (
                                                 <td className="px-4 py-2.5 whitespace-nowrap text-center">
-                                                    <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 text-[10px] font-black border border-indigo-500/20 tabular-nums">
+                                                    <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 text-[10px] font-black border border-indigo-500/20">
                                                         {group.channelIds.length}
                                                     </span>
                                                 </td>

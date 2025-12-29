@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
 import { SearchableSelect } from './SearchableSelect';
 import { MultiSelectDropdown, Option as MultiOption } from './MultiSelectDropdown';
@@ -37,9 +36,9 @@ export const STATUS_OPTIONS: { id: MovieStatus; label: string; colorClass: strin
 const ALL_MOVIE_COLUMNS = [
     { id: 'name', label: 'Movie Title' },
     { id: 'status', label: 'Status' },
-    { id: 'addedAt', label: 'Date Added' },
-    { id: '3d', label: '3D Channel' },
-    { id: '2d', label: '2D Channel' },
+    { id: 'addedAt', label: 'Added At' },
+    { id: '3d', label: '3D Chan.' },
+    { id: '2d', label: '2D Chan.' },
     { id: 'note', label: 'Note' },
 ];
 
@@ -301,7 +300,7 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, channels, onAddM
                         selectedIds={visibleColumns}
                         onChange={setVisibleColumns}
                         className="w-40 h-full"
-                        icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 00-2 2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 00-2 2" /></svg>}
+                        icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 102 0 002 2h2a2 2 0 00-2 2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 00-2 2" /></svg>}
                     />
                     <button
                         onClick={() => setIsAddModalOpen(true)}
@@ -328,7 +327,7 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, channels, onAddM
                         selectedIds={selectedStatuses}
                         onChange={setSelectedStatuses}
                         className="w-full h-11"
-                        icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" strokeWidth="2" strokeLinecap="round"/></svg>}
+                        icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 00-2-2M9 5a2 2 0 012-2h2a2 2 0 012 2" strokeWidth="2" strokeLinecap="round"/></svg>}
                     />
                     <MultiSelectDropdown 
                         label="3D Channels"
@@ -355,11 +354,11 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, channels, onAddM
                 {totalItems > itemsPerPage && (
                     <div className="flex justify-between items-center bg-gray-800/40 p-3 rounded-xl border border-gray-700/50 shadow-sm">
                         <div className="text-xs text-gray-400 font-medium">
-                            Showing <span className="text-white tabular-nums">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="text-white tabular-nums">{Math.min(currentPage * itemsPerPage, totalItems)}</span> of <span className="text-white tabular-nums">{totalItems}</span>
+                            Showing <span className="text-white">{(currentPage - 1) * itemsPerPage + 1}</span> to <span className="text-white">{Math.min(currentPage * itemsPerPage, totalItems)}</span> of <span className="text-white">{totalItems}</span>
                         </div>
                         <div className="flex gap-2">
                             <button onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} disabled={currentPage === 1} className="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded-lg text-xs text-white disabled:opacity-30 transition-all">Prev</button>
-                            <span className="px-3 py-1 bg-gray-900/50 rounded-lg text-xs text-gray-300 border border-gray-700 font-bold tabular-nums">Page {currentPage} of {totalPages}</span>
+                            <span className="px-3 py-1 bg-gray-900/50 rounded-lg text-xs text-gray-300 border border-gray-700 font-bold">Page {currentPage} of {totalPages}</span>
                             <button onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages} className="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded-lg text-xs text-white disabled:opacity-30 transition-all">Next</button>
                         </div>
                     </div>
@@ -369,26 +368,26 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, channels, onAddM
                     <table className="min-w-full divide-y divide-gray-700/50 table-fixed">
                         <thead className="bg-gray-900/50">
                             <tr>
-                                <th className="px-4 py-2.5 w-12 text-center sticky left-0 z-10 bg-inherit shadow-[4px_0_10px_rgba(0,0,0,0.2)]">
+                                <th className="px-4 py-3 w-12 text-center sticky left-0 z-10 bg-inherit shadow-[4px_0_10px_rgba(0,0,0,0.2)]">
                                     <CircularCheckbox checked={filteredAndSortedMovies.length > 0 && selectedIds.length === filteredAndSortedMovies.length} onChange={handleToggleAll} label="Select all movies" />
                                 </th>
                                 {isVisible('name') && (
-                                    <SortableHeader label="Movie" sortKey="name" currentSort={sortConfig} onSort={handleSort} className="w-[250px] min-w-[200px]" icon={<svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4" /></svg>} />
+                                    <SortableHeader label="Movie Title" sortKey="name" currentSort={sortConfig} onSort={handleSort} className="w-[250px] min-w-[200px]" icon={<svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4" /></svg>} />
                                 )}
                                 {isVisible('status') && (
-                                    <SortableHeader label="Status" sortKey="status" currentSort={sortConfig} onSort={handleSort} align="center" className="w-[160px] min-w-[160px]" icon={<svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>} />
+                                    <SortableHeader label="Status" sortKey="status" currentSort={sortConfig} onSort={handleSort} align="center" className="w-[160px] min-w-[160px]" icon={<svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>} />
                                 )}
                                 {isVisible('addedAt') && (
-                                    <SortableHeader label="Added" sortKey="addedAt" currentSort={sortConfig} onSort={handleSort} className="w-[120px] min-w-[120px]" icon={<svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>} />
+                                    <SortableHeader label="Added At" sortKey="addedAt" currentSort={sortConfig} onSort={handleSort} className="w-[120px] min-w-[120px]" icon={<svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>} />
                                 )}
                                 {isVisible('3d') && (
-                                    <th className="px-4 py-2.5 text-center text-[11px] font-extrabold text-gray-400 uppercase tracking-wider w-[180px] min-w-[180px]"><div className="flex items-center justify-center gap-2 opacity-90"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>3D Channel</div></th>
+                                    <th className="px-4 py-3 text-center text-sm font-medium text-gray-300 w-[180px] min-w-[180px] whitespace-nowrap overflow-hidden"><div className="flex items-center justify-center gap-2 opacity-90 truncate"><svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>3D Chan.</div></th>
                                 )}
                                 {isVisible('2d') && (
-                                    <th className="px-4 py-2.5 text-center text-[11px] font-extrabold text-gray-400 uppercase tracking-wider w-[180px] min-w-[180px]"><div className="flex items-center justify-center gap-2 opacity-90"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>2D Channel</div></th>
+                                    <th className="px-4 py-3 text-center text-sm font-medium text-gray-300 w-[180px] min-w-[180px] whitespace-nowrap overflow-hidden"><div className="flex items-center justify-center gap-2 opacity-90 truncate"><svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>2D Chan.</div></th>
                                 )}
                                 {isVisible('note') && (
-                                    <th className="px-4 py-2.5 text-left text-[11px] font-extrabold text-gray-400 uppercase tracking-wider w-auto min-w-[200px]"><div className="flex items-center justify-start gap-2 opacity-90"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>Note</div></th>
+                                    <th className="px-4 py-3 text-center text-sm font-medium text-gray-300 w-auto min-w-[200px] whitespace-nowrap overflow-hidden"><div className="flex items-center justify-center gap-2 opacity-90 truncate"><svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>Note</div></th>
                                 )}
                             </tr>
                         </thead>
@@ -402,7 +401,7 @@ export const MoviesView: React.FC<MoviesViewProps> = ({ movies, channels, onAddM
                                         <td className="px-4 py-2.5 whitespace-nowrap sticky left-0 z-10 bg-inherit"><CircularCheckbox checked={isSelected} onChange={() => handleToggleRow(movie.id)} onClick={(e) => e.stopPropagation()} /></td>
                                         {isVisible('name') && <td className="px-4 py-2.5 align-middle"><div className="text-[13px] font-bold text-gray-200 group-hover:text-indigo-400 transition-colors truncate leading-snug">{movie.name}</div></td>}
                                         {isVisible('status') && <td className="px-4 py-2.5 align-middle text-center no-row-click"><div className="flex justify-center w-full"><SearchableSelect value={movie.status} options={STATUS_OPTIONS} onChange={(val) => onUpdateMovie(movie.id, { status: val as MovieStatus })} className="w-[140px]" variant="default" /></div></td>}
-                                        {isVisible('addedAt') && <td className="px-4 py-2.5 align-middle"><div className="flex flex-col tabular-nums"><span className="text-[10px] font-bold text-gray-300">{new Date(movie.addedAt).toLocaleDateString()}</span><span className="text-[8px] text-gray-500 opacity-60">{new Date(movie.addedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span></div></td>}
+                                        {isVisible('addedAt') && <td className="px-4 py-2.5 align-middle"><div className="flex flex-col text-center"><span className="text-[10px] font-bold text-gray-300 whitespace-nowrap">{new Date(movie.addedAt).toLocaleDateString()}</span><span className="text-[8px] text-gray-500 opacity-60 whitespace-nowrap">{new Date(movie.addedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span></div></td>}
                                         {isVisible('3d') && <td className="px-4 py-2.5 align-middle text-center no-row-click"><div className="flex justify-center w-full"><SearchableSelect value={channel3DId} options={singleSelectChannelOptions} onChange={(id) => onUpdateMovie(movie.id, { channel3DIds: [id] })} placeholder="Select 3D..." className="w-[160px]" variant="minimal" /></div></td>}
                                         {isVisible('2d') && <td className="px-4 py-2.5 align-middle text-center no-row-click"><div className="flex justify-center w-full"><SearchableSelect value={channel2DId} options={singleSelectChannelOptions} onChange={(id) => onUpdateMovie(movie.id, { channel2DIds: [id] })} placeholder="Select 2D..." className="w-[160px]" variant="minimal" /></div></td>}
                                         {isVisible('note') && <td className="px-4 py-2.5 align-middle no-row-click"><NoteInput initialValue={movie.note || ''} onSave={(val) => onUpdateMovie(movie.id, { note: val })} /></td>}

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { VideoStat } from '../types';
 import { formatNumber, formatRelativeTime } from '../utils/helpers';
@@ -27,7 +26,7 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
             </div>
             <div className="p-4 space-y-2">
                 <h3 className="text-base font-semibold text-white line-clamp-2" title={video.title}>{video.title}</h3>
-                <p className="text-xs text-gray-400 tabular-nums">{formatRelativeTime(video.publishedAt)}</p>
+                <p className="text-xs text-gray-400">{formatRelativeTime(video.publishedAt)}</p>
                 <div className="flex justify-between items-center pt-2 text-sm">
                     <StatIcon type="views" value={formatNumber(video.viewCount)} />
                     <StatIcon type="likes" value={formatNumber(video.likeCount)} />
